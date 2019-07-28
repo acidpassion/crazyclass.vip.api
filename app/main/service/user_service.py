@@ -6,7 +6,7 @@ from app.main.model.user import User
 
 
 def save_new_user(data):
-    user = User.query.filter_by(email=data['email']).first()
+    user = User.query.filter_by(nickName=data['nickName']).first()
     if not user:
         new_user = User(
             public_id=str(uuid.uuid4()),
@@ -15,9 +15,9 @@ def save_new_user(data):
             avatarUrl=data['avatarUrl'],
             city = data['city'],
             country = data['country'],
-            gender = data['gener'],
-            language = data['languate'],
-            province = data['provice']
+            gender = data['gender'],
+            language = data['language'],
+            province = data['province']
         )
         save_changes(new_user)
         return generate_token(new_user)

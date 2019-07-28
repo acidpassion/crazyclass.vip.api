@@ -2,8 +2,8 @@ import os
 
 #postgresql port: 5432
 # uncomment the line below for postgres database url from environment variable
-mysql_uri ='mysql+pymysql://root:Thomas2010!@#$@localhost/crazyclass'
-
+mysql_uri ='mysql+pymysql://root:Thomas2010!@#$@crazyclass.vip/crazyclass?charset=utf8mb4'
+mysql_test_uri ='mysql+pymysql://root:Thomas2010!@#$@crazyclass.vip/crazyclass?charset=utf8mb4'
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -14,7 +14,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     # uncomment the line below to use postgres
-    SQLALCHEMY_DATABASE_URI = mysql_uri
+    SQLALCHEMY_DATABASE_URI = mysql_test_uri
     DEBUG = True
     # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'flask_boilerplate_main.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -23,13 +23,14 @@ class DevelopmentConfig(Config):
 class TestingConfig(Config):
     DEBUG = True
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = mysql_uri
+    SQLALCHEMY_DATABASE_URI = mysql_test_uri
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class ProductionConfig(Config):
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI = mysql_uri
     # uncomment the line below to use postgres
     # SQLALCHEMY_DATABASE_URI = mysql_uri
 

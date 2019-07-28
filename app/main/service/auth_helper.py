@@ -8,8 +8,8 @@ class Auth:
     def login_user(data):
         try:
             # fetch the user data
-            user = User.query.filter_by(email=data.get('email')).first()
-            if user and user.check_password(data.get('password')):
+            user = User.query.filter_by(nickName=data.get('nickName')).first()
+            if user:
                 auth_token = User.encode_auth_token(user.id)
                 if auth_token:
                     response_object = {
@@ -21,7 +21,7 @@ class Auth:
             else:
                 response_object = {
                     'status': 'fail',
-                    'message': 'email or password does not match.'
+                    'message': 'User not found.'
                 }
                 return response_object, 401
 
@@ -69,8 +69,11 @@ class Auth:
                     'status': 'success',
                     'data': {
                         'user_id': user.id,
-                        'email': user.email,
+                        'nickName': user.nickName,
                         'admin': user.admin,
+                        'avatarUrl':user.avatarUrl,
+                        'child_school_id':user.child_school_id,
+                        'child_name':user.child_name,
                         'registered_on': str(user.registered_on)
                     }
                 }

@@ -5,14 +5,17 @@ from app.main.model.blacklist import BlacklistToken
 import json
 from app.test.base import BaseTestCase
 
-
 def register_user(self):
     return self.client.post(
         '/user/',
         data=json.dumps(dict(
-            email='joe@gmail.com',
-            username='username',
-            password='123456'
+            nickName='Alex👀',
+            gender=1,
+            language='zh_CN',
+            city='Guangzhou',
+            province='Guangdong',
+            country='China',
+            avatarUrl='https://wx.qlogo.cn/mmopen/vi_32/xSNc6wVNtlY6z28PgU4tdJRNshhOgDlsXBuLbzGmtFSylccMFqoYaGC4RjjQjZcbsnt97KF3icHa3lFHHmH439A/132',
         )),
         content_type='application/json'
     )
@@ -22,8 +25,7 @@ def login_user(self):
     return self.client.post(
         '/auth/login',
         data=json.dumps(dict(
-            email='joe@gmail.com',
-            password='123456'
+            nickName='Alex👀'
         )),
         content_type='application/json'
     )
@@ -82,7 +84,7 @@ class TestAuthBlueprint(BaseTestCase):
             data = json.loads(response.data.decode())
             self.assertTrue(data['status'] == 'fail')
             print(data['message'])
-            self.assertTrue(data['message'] == 'email or password does not match.')
+            self.assertTrue(data['message'] == 'User not found.')
             self.assertTrue(response.content_type == 'application/json')
             self.assertEqual(response.status_code, 401)
 

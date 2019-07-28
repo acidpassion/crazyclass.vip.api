@@ -11,8 +11,13 @@ class TestUserModel(BaseTestCase):
 
     def test_encode_auth_token(self):
         user = User(
-            email='test@test.com',
-            password='test',
+            nickName='Alex👀',
+            gender=1,
+            language='zh_CN',
+            city='Guangzhou',
+            province='Guangdong',
+            country='China',
+            avatarUrl='https://wx.qlogo.cn/mmopen/vi_32/xSNc6wVNtlY6z28PgU4tdJRNshhOgDlsXBuLbzGmtFSylccMFqoYaGC4RjjQjZcbsnt97KF3icHa3lFHHmH439A/132',
             registered_on=datetime.datetime.utcnow()
         )
         db.session.add(user)
@@ -22,8 +27,13 @@ class TestUserModel(BaseTestCase):
 
     def test_decode_auth_token(self):
         user = User(
-            email='test@test.com',
-            password='test',
+            nickName="Alex👀",
+            gender=1,
+            language='zh_CN',
+            city='Guangzhou',
+            province='Guangdong',
+            country='China',
+            avatarUrl='https://wx.qlogo.cn/mmopen/vi_32/xSNc6wVNtlY6z28PgU4tdJRNshhOgDlsXBuLbzGmtFSylccMFqoYaGC4RjjQjZcbsnt97KF3icHa3lFHHmH439A/132',
             registered_on=datetime.datetime.utcnow()
         )
         db.session.add(user)
