@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  nginx:
+        image: nginx:1.13.7
+        container_name: nginx
+        ports:
+            - 80:80
+  crazyclass.vip:
+    image: crazyclass.vip
+    build: .
+    ports:
+      - 5000:5000
