@@ -22,7 +22,7 @@ manager.add_command('db', MigrateCommand)
 
 @manager.command
 def run():
-    app.run()
+    app.run(host='0.0.0.0', ssl_context=('/root/ssl/2498249_crazyclass.vip.pem', '/root/ssl/2498249_crazyclass.vip.key'))
 
 
 @manager.command
